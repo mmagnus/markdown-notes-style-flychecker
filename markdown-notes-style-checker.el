@@ -5,7 +5,7 @@
 (require 'flycheck)
 
 (flycheck-define-checker markdown-notes-style-checker
-  "A Markdown notes style checker using the markdown_notes_debugger.py script in Python.
+  "A Markdown notes style checker using the markdown_notes_style_checker.py script in Python.
 
 See URL `https://github.com/mmagnus/markdown-notes-style-flychecker'."
   :command ("markdown_notes_style_checker.py" source-inplace)
