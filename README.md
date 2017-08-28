@@ -7,7 +7,7 @@ On the fly (markdown) notes style checking in Python (standalone) and for GNU Em
 A Lisp script to interpret an output of a Python script `markdown_notes_style_checker.py`:
 
 ```shell
-/markdown_notes_style_checker.py ../notes/rna-dca.md
+markdown_notes_style_checker.py ../notes/rna-dca.md
 rna-dca.md:1: info: Title with less than 3 words.
 rna-dca.md:5: warning: A link without a description.
 rna-dca.md:33: warning: A link without a description.
