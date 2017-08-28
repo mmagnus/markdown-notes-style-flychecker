@@ -41,7 +41,7 @@ def check_md(fn, verbose=False):
     for no, l in enumerate(lines, 1):
         # print(l)
         if l.startswith('#'):
-            header = l.replace('#', '').strip()
+            header = l.lstrip('#').strip()
             if header in DONT_CHECK_NOTES:
                 continue
 
