@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-
 Notes?
 
 # Inbox
 ^ dont check it
 
-if '@ok' in header, then accept given header!
+if # ends a header, then accept given header!
 """
-
 from __future__ import print_function
+import argparse
 import os
-import sys
 
-DONT_CHECK_NOTES = ["Inbox"]
+from config import DONT_CHECK_NOTES, IGNORE_TAG
 
 
 class Paragraph:
@@ -28,6 +26,15 @@ class Paragraph:
         return (str(self.no) + ':' + self.header + '#' + str(self.len))
 
 
+def get_parser():
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('file', help="Markdown file")
+    parser.add_argument("-v", "--verbose",
+                        action="store_true", help="be verbose")
+    return parser
+
+
 def check_md(fn, verbose=False):
     paragraphs = []
     lines = open(fn).read().split('\n')
@@ -38,7 +45,7 @@ def check_md(fn, verbose=False):
             if header in DONT_CHECK_NOTES:
                 continue
 
-            if '@ok' in header:
+            if header.endswith(IGNORE_TAG):
                 continue
 
             if paragraphs:
@@ -77,4 +84,6 @@ def check_md(fn, verbose=False):
 
 
 if __name__ == '__main__':
-    check_md(sys.argv[1])
+    parser = get_parser()
+    args = parser.parse_args()
+    check_md(args.file)
